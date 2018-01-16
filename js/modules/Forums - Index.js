@@ -112,7 +112,8 @@ function onlineSorting() {
 
     // Append offline ranked list - rank labels that have no one online
     for (i = offlineRankList.length-1; i >= 0; i--) {
-        userList.after(", ");
+        //userList.after(", ");
+        userList.after($("<br>"));
         userList.after(offlineRankList[i]);
     }
 

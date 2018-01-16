@@ -19,6 +19,11 @@ $(document).ready(function () {
         console.log("Index Settings Changed!");
     });
 
+    $(".GlobalSettings").change(function () {
+        saveGlobalSettings();
+        console.log("Global Settings Changed!");
+    });
+
     $(".nav li").click(function() {
         $("body").scrollTop(0);
     });
@@ -29,13 +34,16 @@ function loadSettings() {
     loadDefaults();
     // Grab from memory
     loadIndexSettings();
+    loadGlobalSettings();
 }
 
 function loadDefaults() {
     loadIndexDefault();
+    loadGlobalDefault();
     
 }
 
+// ------------------------- Index -------------------------
 function loadIndexDefault() {
     // $("#RepChartsEnable").prop('checked', true);
     // $("#RepChartsLinksEnable").prop('checked', true);
@@ -68,6 +76,41 @@ function saveIndexSettings() {
         // Save Confirmation
     });
 }
+
+// ------------------------- Global -------------------------
+function loadGlobalDefault() {
+    // $("#RepChartsEnable").prop('checked', true);
+    // $("#RepChartsLinksEnable").prop('checked', true);
+}
+
+function loadGlobalSettings() {
+    chrome.storage.sync.get("Global", function (data) {
+        $.each(data, function (index, data) {
+            $.each(data, function (index, data) {
+                //console.log("1: " + $(this));
+                $.each(data, function (key, value) {
+                    //console.log("2: " + data);
+                    switch (key) {
+                        case "GlobalHideBannerEnable": $("#HideBannerEnable").prop('checked', value);
+                            break;
+                        default: console.log("ERROR: Key not found.");
+                    }
+                })
+            })
+
+        });
+        saveGlobalSettings();
+    });
+}
+
+function saveGlobalSettings() {
+    chrome.storage.sync.set({
+        Global: [{ 'GlobalHideBannerEnable': $("#HideBannerEnable").is(':checked') }]
+    }, function () {
+        // Save Confirmation
+    });
+}
+
 
 function update(element) {
     // 'jscolor' instance can be used as a string

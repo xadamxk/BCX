@@ -43,6 +43,18 @@
         "js/dependencies/jquery-3.2.1.js",
         "js/modules/Forums - Index.js"
       ]
+    },
+    // Global
+    {
+      "run_at": "document_end",
+      "matches": [
+        "*://www.bleepingcomputer.com/forums/*",
+        "*://www.bleepingcomputer.com/forums*"
+      ],
+      "js": [
+        "js/dependencies/jquery-3.2.1.js",
+        "js/modules/Forums - Global.js"
+      ]
     }
   ],
   "permissions": [
