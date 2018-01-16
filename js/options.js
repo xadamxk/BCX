@@ -24,6 +24,11 @@ $(document).ready(function () {
         console.log("Global Settings Changed!");
     });
 
+    $(".ProfileSettings").change(function () {
+        saveProfileSettings();
+        console.log("Profile Settings Changed!");
+    });
+
     $(".nav li").click(function() {
         $("body").scrollTop(0);
     });
@@ -35,18 +40,19 @@ function loadSettings() {
     // Grab from memory
     loadIndexSettings();
     loadGlobalSettings();
+    loadProfileSettings();
 }
 
 function loadDefaults() {
     loadIndexDefault();
     loadGlobalDefault();
+    loadProfileDefault();
     
 }
 
 // ------------------------- Index -------------------------
 function loadIndexDefault() {
-    // $("#RepChartsEnable").prop('checked', true);
-    // $("#RepChartsLinksEnable").prop('checked', true);
+    $("#OnlineSortingEnable").prop('checked', true);
 }
 
 function loadIndexSettings() {
@@ -79,8 +85,8 @@ function saveIndexSettings() {
 
 // ------------------------- Global -------------------------
 function loadGlobalDefault() {
-    // $("#RepChartsEnable").prop('checked', true);
-    // $("#RepChartsLinksEnable").prop('checked', true);
+    $("#HideBannerEnable").prop('checked', true);
+    $("#HideLocationEnable").prop('checked', true);
 }
 
 function loadGlobalSettings() {
@@ -92,6 +98,8 @@ function loadGlobalSettings() {
                     //console.log("2: " + data);
                     switch (key) {
                         case "GlobalHideBannerEnable": $("#HideBannerEnable").prop('checked', value);
+                            break;
+                        case "GlobalHideLocationEnable": $("#HideLocationEnable").prop('checked', value);
                             break;
                         default: console.log("ERROR: Key not found.");
                     }
@@ -105,12 +113,45 @@ function loadGlobalSettings() {
 
 function saveGlobalSettings() {
     chrome.storage.sync.set({
-        Global: [{ 'GlobalHideBannerEnable': $("#HideBannerEnable").is(':checked') }]
+        Global: [{ 'GlobalHideBannerEnable': $("#HideBannerEnable").is(':checked') },
+        { 'GlobalHideLocationEnable': $("#HideLocationEnable").is(':checked') }]
     }, function () {
         // Save Confirmation
     });
 }
 
+// ------------------------- Profile -------------------------
+function loadProfileDefault() {
+    $("#ActivityLabelEnable").prop('checked', true);
+}
+
+function loadProfileSettings() {
+    chrome.storage.sync.get("Profile", function (data) {
+        $.each(data, function (index, data) {
+            $.each(data, function (index, data) {
+                //console.log("1: " + $(this));
+                $.each(data, function (key, value) {
+                    //console.log("2: " + data);
+                    switch (key) {
+                        case "ProfileActivityLabelEnable": $("#ActivityLabelEnable").prop('checked', value);
+                            break;
+                        default: console.log("ERROR: Key not found.");
+                    }
+                })
+            })
+
+        });
+        saveProfileSettings();
+    });
+}
+
+function saveProfileSettings() {
+    chrome.storage.sync.set({
+        Profile: [{ 'ProfileActivityLabelEnable': $("#ActivityLabelEnable").is(':checked') }]
+    }, function () {
+        // Save Confirmation
+    });
+}
 
 function update(element) {
     // 'jscolor' instance can be used as a string

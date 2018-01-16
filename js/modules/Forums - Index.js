@@ -17,19 +17,19 @@ function getIndexSettings(){
                         }
                     })
                 })
-
+                
             });
-            debugTest();
-            makeChanges()
+            debugIndexTest();
+            makeIndexChanges();
         }
     });
 }
-function debugTest() {
+function debugIndexTest() {
     if (debug == true) {
         console.log("OnlineSorting: " + enableOnlineSorting);
     }
 }
-function makeChanges() {
+function makeIndexChanges() {
     //
     if (enableOnlineSorting) {
         onlineSorting();
