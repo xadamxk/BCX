@@ -1,5 +1,7 @@
-var debug = false;
+﻿var debug = false;
 var enableOnlineSorting = false;
+var enableAutoCollapseHover = false;
+var enableAutoCollapseSidebar = false;
 getIndexSettings();
 
 // Set vars equal to saved settings
@@ -11,6 +13,10 @@ function getIndexSettings(){
                     $.each(data2, function (key, value) {
                         switch (key) {
                             case "GeneralOnlineSortingEnable": if (value) { enableOnlineSorting = value }
+                                break;
+                            case "GeneralAutoCollapseHoverEnable": if (value) { enableAutoCollapseHover = value }
+                                break;
+                            case "GeneralAutoCollapseSidebarEnable": if (value) { enableAutoCollapseSidebar = value }
                                 break;
                             default: //console.log("ERROR: Key not found.");
                                 break;
@@ -27,13 +33,49 @@ function getIndexSettings(){
 function debugIndexTest() {
     if (debug == true) {
         console.log("OnlineSorting: " + enableOnlineSorting);
+        console.log("AutoCollapseHover: " + enableAutoCollapseHover);
+        console.log("AutoCollapseSidebar: " + enableAutoCollapseSidebar);
     }
 }
 function makeIndexChanges() {
-    //
+    // Online Sorting
     if (enableOnlineSorting) {
         onlineSorting();
     }
+    // Auto Collapse Hover
+    if (enableAutoCollapseHover) {
+        minimizeSections();
+    }
+    // Auto Collapse Sidebar
+    if (enableAutoCollapseSidebar) {
+        minimizeSidebar();
+    }
+}
+
+function minimizeSidebar() {
+    // If open
+    if ($("#toggle_sidebar").text() == "×") {
+        // Close animation
+        $("#index_stats").css("display", "none");
+        $("#board_index").addClass("no_sidebar");
+    }
+}
+
+function minimizeSections() {
+    // Hide every section body
+    $(".ipsBox").hide();
+    // Loop over each section
+    $("#categories div").each(function (index) {
+        // Show mouseover event
+        $(this).mouseover(function () {
+            $(this).find(".ipsBox").show(); //.fadeIn( 500 );
+        });
+
+        // Hide mouseout event
+        $(this).mouseout(function () {
+            $(this).find(".ipsBox").hide();
+        });
+    });
 }
 
 function onlineSorting() {

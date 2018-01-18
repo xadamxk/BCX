@@ -1,4 +1,4 @@
-{
+﻿{
   "manifest_version": 2,
   "name": "BC Xtension",
   "short_name": "BCX",
@@ -32,17 +32,20 @@
     "scripts": [ "js/background.js" ]
   },
   "content_scripts": [
+    // Index
     {
       "run_at": "document_end",
       "matches": [
         "*://www.bleepingcomputer.com/forums/",
-        "*://www.bleepingcomputer.com/forums"
+        "*://www.bleepingcomputer.com/forums",
+        "*://www.bleepingcomputer.com/forums/index.php"
       ],
       "js": [
         "js/dependencies/jquery-3.2.1.js",
         "js/modules/Forums - Index.js"
       ]
     },
+    // Profiles
     {
       "run_at": "document_end",
       "matches": [
@@ -53,6 +56,7 @@
         "js/modules/Forums - Profile.js"
       ]
     },
+    // Global
     {
       "run_at": "document_end",
       "matches": [

@@ -53,6 +53,7 @@ function loadDefaults() {
 // ------------------------- Index -------------------------
 function loadIndexDefault() {
     $("#OnlineSortingEnable").prop('checked', true);
+    $("#AutoCollapseSidebarEnable").prop('checked', true);
 }
 
 function loadIndexSettings() {
@@ -64,6 +65,10 @@ function loadIndexSettings() {
                     //console.log("2: " + data);
                     switch (key) {
                         case "GeneralOnlineSortingEnable": $("#OnlineSortingEnable").prop('checked', value);
+                            break;
+                        case "GeneralAutoCollapseHoverEnable": $("#AutoCollapseHoverEnable").prop('checked', value);
+                            break;
+                        case "GeneralAutoCollapseSidebarEnable": $("#AutoCollapseSidebarEnable").prop('checked', value);
                             break;
                         default: console.log("ERROR: Key not found.");
                     }
@@ -77,7 +82,9 @@ function loadIndexSettings() {
 
 function saveIndexSettings() {
     chrome.storage.sync.set({
-        Index: [{ 'GeneralOnlineSortingEnable': $("#OnlineSortingEnable").is(':checked') }]
+        Index: [{ 'GeneralOnlineSortingEnable': $("#OnlineSortingEnable").is(':checked') },
+        { 'GeneralAutoCollapseHoverEnable': $("#AutoCollapseHoverEnable").is(':checked') },
+        { 'GeneralAutoCollapseSidebarEnable': $("#AutoCollapseSidebarEnable").is(':checked') }]
     }, function () {
         // Save Confirmation
     });
@@ -87,6 +94,7 @@ function saveIndexSettings() {
 function loadGlobalDefault() {
     $("#HideBannerEnable").prop('checked', true);
     $("#HideLocationEnable").prop('checked', true);
+    $("#EasyCiteEnable").prop('checked', true);
 }
 
 function loadGlobalSettings() {
@@ -101,6 +109,8 @@ function loadGlobalSettings() {
                             break;
                         case "GlobalHideLocationEnable": $("#HideLocationEnable").prop('checked', value);
                             break;
+                        case "GlobalEasyCiteEnable": $("#EasyCiteEnable").prop('checked', value);
+                            break;
                         default: console.log("ERROR: Key not found.");
                     }
                 })
@@ -114,7 +124,8 @@ function loadGlobalSettings() {
 function saveGlobalSettings() {
     chrome.storage.sync.set({
         Global: [{ 'GlobalHideBannerEnable': $("#HideBannerEnable").is(':checked') },
-        { 'GlobalHideLocationEnable': $("#HideLocationEnable").is(':checked') }]
+        { 'GlobalHideLocationEnable': $("#HideLocationEnable").is(':checked') },
+        { 'GlobalEasyCiteEnable': $("#EasyCiteEnable").is(':checked') }]
     }, function () {
         // Save Confirmation
     });
