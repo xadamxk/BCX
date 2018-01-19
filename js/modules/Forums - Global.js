@@ -138,18 +138,6 @@ function easyCite() {
             }); // end of posts loop
         });
     }
-    // Rules (https://www.bleepingcomputer.com/forum-rules/)
-    else if (location.href.includes("/forum-rules/")) {
-        //
-         var activeBreadcrumb = $(".cz-breadcrumb").find(".active");
-         citationDescription = activeBreadcrumb.text();
-         $(activeBreadcrumb).after($("<a>")
-            .text("Cite")
-            .addClass("bc_sub_btn")
-            .css({ "cursor": "pointer", "margin-left": "5px" })
-            .attr("id", "citeButton"));
-        citationText = citationDescription;
-    }
     // Downloads
     else if (location.href.includes("/download/")) {
         //
@@ -219,8 +207,14 @@ function easyCite() {
            .attr("id", "citeButton"));
         citationText = citationDescription;
     }
-        // Glossary
-    else if (location.href.includes("/glossary/")) {
+        // Glossary, Startups, Uninstall, Rules, filedb, chat, welcome,
+    else if (location.href.includes("/glossary/") ||
+        location.href.includes("/startups/") ||
+        location.href.includes("/uninstall/") ||
+        location.href.includes("/forum-rules/") ||
+        location.href.includes("/filedb/") ||
+        location.href.includes("/chat/") ||
+        location.href.includes("/welcome-guide/")) {
         //
         var activeBreadcrumb = $(".cz-breadcrumb").find(".active");
         citationDescription = activeBreadcrumb.text();
@@ -242,9 +236,9 @@ function easyCite() {
            .attr("id", "citeButton"));
         citationText = citationDescription;
     }
-        // Search Page
-    else if (location.href.includes("/search.php") && !location.href.includes("?action=results")) {
-        
+        // Startup
+    else if (false) {
+        //
     }
     $("#citeButton").click(function (event) {
         var target = $(event.target);
