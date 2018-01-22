@@ -94,7 +94,7 @@ function easyCite() {
                 .append($("<a>")
                 .attr({ "title": "Cite Post", "id": "citeButton" + index, "href": "javascript:void(0);" })
                 .text("Cite")
-                .css({ "cursor": "pointer", "margin-right": "5px" })
+                .css({ "cursor": "pointer", "margin-right": "1px" })
                 .addClass("ipsButton_secondary")));
 
             // temp vars

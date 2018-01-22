@@ -32,7 +32,6 @@
     "scripts": [ "js/background.js" ]
   },
   "content_scripts": [
-    // Index
     {
       "run_at": "document_end",
       "matches": [
@@ -45,7 +44,6 @@
         "js/modules/Forums - Index.js"
       ]
     },
-    // Profiles
     {
       "run_at": "document_end",
       "matches": [
@@ -56,7 +54,16 @@
         "js/modules/Forums - Profile.js"
       ]
     },
-    // Global
+    {
+      "run_at": "document_end",
+      "matches": [
+        "*://www.bleepingcomputer.com/forums/t/*"
+      ],
+      "js": [
+        "js/dependencies/jquery-3.2.1.js",
+        "js/modules/Forums - Private Messages.js"
+      ]
+    },
     {
       "run_at": "document_end",
       "matches": [

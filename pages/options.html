@@ -28,8 +28,8 @@
             <li class="active"><a data-toggle="tab" href="#aboutHFX">About BCX</a></li>
             <li><a data-toggle="tab" href="#general">General</a></li>
             <li><a data-toggle="tab" href="#menuGlobal" id="generalShowGlobal">Global</a></li>
-            <li><a data-toggle="tab" href="#menuThread" id="generalShowThread">Thread</a></li>
-            <li><a data-toggle="tab" href="#menuForum" id="generalShowForum">Forum</a></li>
+            <li><a data-toggle="tab" href="#menuThread" id="generalShowThread">Profile</a></li>
+            <li><a data-toggle="tab" href="#menuForum" id="generalShowForum">Thread?</a></li>
             <li><a data-toggle="tab" href="#menuPM" id="generalShowPM">PM</a></li>
         </ul>
         
@@ -39,7 +39,7 @@
                 <h3>About BCX</h3>
                 <!-- Container -->
                 <div class="panel panel-default" id="aboutPanel" align="center">
-                    <img src="../images/banner-small.png" id="headerImage" alt="BCX Header">
+                    <img src="../images/banner-small-short.png" id="headerImage" alt="BCX Header">
                     <h3>Enhance your BC Experience!</h3>
                     <h4>Written By: <a href="https://www.bleepingcomputer.com/forums/u/945603/xadamxk/">xadamxk</a></h4>
                     <h4>Version: <span id="BCXVersion"></span></h4>
@@ -233,6 +233,29 @@
             <div id="menuPM" class="tab-pane fade">
                 <h3>PM Changes</h3>
                 <!-- PM Changes -->
+                <!-- OnlineSorting -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">PM From Post</div>
+                    <div class="panel-body">
+                        <!-- Enable PM From Post -->
+                        <div class="col-sm-12">
+                            <div class="checkbox-slider--b col-sm-4">
+                                <label>
+                                    <input type="checkbox" id="PMFromPostEnable" class="PMSettings">
+                                    <span class="toggleLabel">PM From Post</span>
+                                </label>
+                            </div>
+                            <div class="checkbox-slider--b col-sm-8">
+                                <span class="toggleLabel">Allows you to PM users directly from a post. </span>
+                                <br />
+                                <br />
+                                <span class="toggleLabel">More Info</span>
+                                <br />
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- Online Sorting End -->
             </div>
             <!-- PM End -->
         </div>

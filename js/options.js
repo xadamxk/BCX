@@ -29,6 +29,11 @@ $(document).ready(function () {
         console.log("Profile Settings Changed!");
     });
 
+    $(".PMSettings").change(function () {
+        savePMSettings();
+        console.log("PM Settings Changed!");
+    });
+
     $(".nav li").click(function() {
         $("body").scrollTop(0);
     });
@@ -41,13 +46,14 @@ function loadSettings() {
     loadIndexSettings();
     loadGlobalSettings();
     loadProfileSettings();
+    loadPMSettings();
 }
 
 function loadDefaults() {
     loadIndexDefault();
     loadGlobalDefault();
     loadProfileDefault();
-    
+    loadPMDefault();
 }
 
 // ------------------------- Index -------------------------
@@ -159,6 +165,39 @@ function loadProfileSettings() {
 function saveProfileSettings() {
     chrome.storage.sync.set({
         Profile: [{ 'ProfileActivityLabelEnable': $("#ActivityLabelEnable").is(':checked') }]
+    }, function () {
+        // Save Confirmation
+    });
+}
+
+// ------------------------- PM -------------------------
+function loadPMDefault() {
+    $("#PMFromPostEnable").prop('checked', true);
+}
+
+function loadPMSettings() {
+    chrome.storage.sync.get("PM", function (data) {
+        $.each(data, function (index, data) {
+            $.each(data, function (index, data) {
+                //console.log("1: " + $(this));
+                $.each(data, function (key, value) {
+                    //console.log("2: " + data);
+                    switch (key) {
+                        case "PMpmFromPostEnable": $("#PMFromPostEnable").prop('checked', value);
+                            break;
+                        default: console.log("ERROR: Key not found.");
+                    }
+                })
+            })
+
+        });
+        savePMSettings();
+    });
+}
+
+function savePMSettings() {
+    chrome.storage.sync.set({
+        PM: [{ 'PMpmFromPostEnable': $("#PMFromPostEnable").is(':checked') }]
     }, function () {
         // Save Confirmation
     });
